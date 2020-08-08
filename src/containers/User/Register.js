@@ -16,7 +16,7 @@ const [msg,setMsg] = useState('')
     }
     function handleSubmit(){
 
-        Axios.post("https://expensetrackerbyd.herokuapp.com/register",{username,password}).then(data=>{
+        Axios.post("/register",{username,password}).then(data=>{
             if(data.statusText==="OK"){
                 console.log("Account")
                 setMsg("Account Create Sucessfully")
