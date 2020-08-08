@@ -3,7 +3,7 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import axios from 'axios'
 import Axios from 'axios';
 
-const Register = (props)=>{
+const Login = (props)=>{
     const [username,setUsername] = useState('')
     const [password,setPassword] = useState('')
 const [msg,setMsg] = useState('')
@@ -14,21 +14,18 @@ const [msg,setMsg] = useState('')
     function onPassChange(e){
         setPassword(e.target.value)
     }
-    function changeRoute(){
-      props.history.push('/login')
-    }
     function handleSubmit(){
 
-        Axios.post("/register",{username,password}).then(data=>{
+        Axios.post("/login",{username,password}).then(data=>{
+            console.log(data)
             if(data.statusText==="OK"){
-                console.log("Account")
-                setMsg("Account Create Sucessfully")
-                setPassword('')
-                setUsername('')
+               props.history.push('/home')
             }else{
                 setMsg('Something Went Wrong')
             }
         
+        }).catch(error=>{
+            setMsg('Username or Password is invalid')
         })
     }
     return(
@@ -37,9 +34,9 @@ const [msg,setMsg] = useState('')
            UserName:<input type='text' name="username" onChange={onUserChange} value={username}></input><br/><br/>
 
            Password:<input type='password' name="password" onChange={onPassChange} value={password}  ></input><br/>
-           <button onClick={handleSubmit}>Submit</button><br />
-           <button onClick={changeRoute}>Already Have Account</button>
+           <button onClick={handleSubmit}>Login</button><br />
+           
         </div>
     )
 }
-export default Register
+export default Login
