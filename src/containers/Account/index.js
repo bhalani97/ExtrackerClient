@@ -2,12 +2,12 @@
 import React from 'react';
 import HeaderBar from '../Header';
 
-const Home = () =>{
+const Acount = () =>{
     return (
         <div>
             <HeaderBar></HeaderBar>
-            Home
+            BankAccount
         </div>
     )
 }
-export default Home
+export default Acount
