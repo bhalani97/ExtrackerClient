@@ -16,7 +16,7 @@ const Login = (props) => {
     setPassword(e.target.value);
   }
   function handleSubmit() {
-
+console.log(username+password)
    Auth.login(username,password)
       .then((data) => {
         console.log(data);
