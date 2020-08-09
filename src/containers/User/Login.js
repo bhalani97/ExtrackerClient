@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 import axios from "axios";
 import Axios from "axios";
+import Auth from "../../API/auth";
 
 const Login = (props) => {
   const [username, setUsername] = useState("");
@@ -15,7 +16,8 @@ const Login = (props) => {
     setPassword(e.target.value);
   }
   function handleSubmit() {
-    Axios.post("/login", { username, password })
+
+   Auth.login(username,password)
       .then((data) => {
         console.log(data);
         if (data.statusText === "OK") {
