@@ -3,7 +3,7 @@
  * (both proactive and reactive)
  */
 
-import io from "socket.io-client";
+import io from "socket.io-client/dist/socket.io.js";
 import { API_URL } from "./const";
 let sourceUrl = API_URL
 
