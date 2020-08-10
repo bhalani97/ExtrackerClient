@@ -4,6 +4,9 @@ class Auth {
   login(username, password) {
     return Axios.post(API_URL + "/login",{username,password});
   }
+  register(user){
+    return Axios.post(API_URL+"/register",user)
+  }
 }
 
 export default new Auth();
