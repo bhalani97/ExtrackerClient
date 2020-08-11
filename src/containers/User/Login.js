@@ -24,6 +24,7 @@ const Login = (props) => {
         console.log(data);
         if (data.statusText === "OK") {
           localStorage.setItem("token", data.data.token);
+          localStorage.setItem('user',data.data.userid)
           Axios.defaults.headers.common["access-token"] = data.data.token;
          dispatch({type:'SET',payload:data.data.userid})
         

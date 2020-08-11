@@ -56,7 +56,7 @@ const columns = [
       key: 'action',
       render: (text, record) => (
         <Space size="middle">
-          <a>Invite {record.name}</a>
+          <a>Edit </a>
           <a>Delete</a>
         </Space>
       ),
@@ -65,6 +65,7 @@ const columns = [
     return (
         <div>
             <HeaderBar></HeaderBar>
+            <br></br>
             <Button onClick={()=>setForm(true)} type="primary">Add Account</Button>
             {form ? <AccountDetailForm handleCancel={handleCancel} /> : null}
             <Table columns={columns} dataSource={data}></Table>

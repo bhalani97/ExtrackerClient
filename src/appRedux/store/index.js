@@ -1,5 +1,5 @@
 const initialState={
-    userId:"",
+    userId:localStorage.getItem('user'),
     socket:""
 }
 
