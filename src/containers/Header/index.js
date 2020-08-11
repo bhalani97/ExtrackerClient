@@ -6,16 +6,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import SocketApi from '../../API/socketApi';
 const { Header, Content, Footer } = Layout;
 
- const HeaderBar = (props)=>{
+const HeaderBar = (props)=>{
   const socket = useSelector(state=>state.socket)
   const dispatch = useDispatch()
-  console.log('Outside Socket')
-  if(!socket){
-  console.log('Inside Socket')
-console.log(localStorage.getItem('token'))
-    const socket = SocketApi(localStorage.getItem('token'))
-    dispatch({type:'SET_SOCKET',payload:socket})
-  }
+  
     function manageNav(){
         props.history.push('/home')
     }

@@ -1,6 +1,6 @@
 const initialState={
-    userId:localStorage.getItem('user'),
-    socket:""
+    userId:"",
+    socket:null
 }
 
 function rootReducer(state=initialState,action){
@@ -11,9 +11,10 @@ function rootReducer(state=initialState,action){
             }
         case 'UNSET':
             return {...state,
-                socket:""
+                socket:null
             }
             case 'SET_SOCKET':
+               
                 return {...state,
                     socket:action.payload
                 }

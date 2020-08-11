@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'
 const persistConfig = {
-  key: 'userId',
+  key: 'root',
   storage: storage,
   whitelist: ['socket'] // which reducer want to store
 };

@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import transcation from '../../API/transcation';
 import moment from 'moment'
 const Tracker = () =>{
+  console.log('Inside Tracker')
     const [form,setForm] = useState(false)
     const [data,setData] = useState([])
     const userId = useSelector(state=>state.userId)
