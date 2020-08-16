@@ -205,6 +205,7 @@ const Tracker = () => {
             loadMore={handleInfiniteOnLoad}
             hasMore={ !loading &&  hasMore}
           >
+            <Spin spinning={loading}>
         <Table pagination={false} columns={columns} dataSource={data} 
         // pagination={{
         //   current: pageNo,
@@ -214,20 +215,7 @@ const Tracker = () => {
         // }}
         
         ></Table>
-        {loading &&
-              hasMore && (
-                <div
-                  className="spinner"
-                  style={{
-                    bottom: "40px",
-                    position: "absolute",
-                    textAlign: "center",
-                    width: "100%"
-                  }}
-                >
-                  <Spin />
-                </div>
-              )}
+        </Spin>
         </InfiniteScroll>
  
     </div>

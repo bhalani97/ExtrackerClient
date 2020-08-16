@@ -73,7 +73,7 @@ const columns = [
             <br></br>
             <Button onClick={()=>setForm(true)} type="primary">Add Account</Button>
             {form ? <AccountDetailForm handleCancel={handleCancel} /> : null}
-            <Table columns={columns} dataSource={data}></Table>
+            <Table pagination={false} columns={columns} dataSource={data}></Table>
             </Spin>
         </div>
     )
