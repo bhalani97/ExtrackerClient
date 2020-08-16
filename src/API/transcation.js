@@ -4,9 +4,9 @@ class Transcation {
   add(transcation) {
     return Axios.post(API_URL + "/transcation",transcation);
   }
-  get(userid){
-    console.log(userid)
-      return Axios.post(API_URL+"/transcations",{userid})
+  get(data){
+    console.log(data)
+      return Axios.post(API_URL+"/transcations",data)
   }
   update(transcation){
     return Axios.put(API_URL + "/transcation",transcation);
