@@ -1,13 +1,12 @@
 
 import React, { useState, useEffect } from 'react';
 import HeaderBar from '../Header';
-import { Button } from 'antd';
+import { Button, Spin } from 'antd';
 import AccountDetailForm from './AccountDetailForm';
 import { Table, Space } from 'antd'
 import { useSelector, useDispatch } from 'react-redux';
 
 import account from '../../API/account';
-import SocketApi from '../../API/socketApi';
 
 const Acount = () =>{
     const [form,setForm] = useState(false)
@@ -15,6 +14,7 @@ const Acount = () =>{
     const userId = useSelector(state=>state.userId)
     const socket = useSelector(state=>state.socket)
     const dispatch = useDispatch()
+    const [loading,setLoading] = useState(true)
    
 function handleCancel(){
     setForm(false)
@@ -27,6 +27,7 @@ useEffect(()=>{
         if(data.statusText="OK"){
             console.log(data.data)
             setData(data.data)
+            setLoading(false)
         }
     })
     socket.on('account',function(data){
@@ -67,11 +68,13 @@ const columns = [
   ];
     return (
         <div>
+          <Spin spinning={loading}>
             <HeaderBar></HeaderBar>
             <br></br>
             <Button onClick={()=>setForm(true)} type="primary">Add Account</Button>
             {form ? <AccountDetailForm handleCancel={handleCancel} /> : null}
             <Table columns={columns} dataSource={data}></Table>
+            </Spin>
         </div>
     )
 }

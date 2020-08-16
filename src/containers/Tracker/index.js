@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import HeaderBar from '../Header';
-import { Button } from 'antd';
+import { Button, Spin } from 'antd';
 import TranscationDetailForm from './TranscationDetailForm';
 import { Table, Space } from 'antd'
 import { useSelector } from 'react-redux';
@@ -13,6 +13,7 @@ const Tracker = () =>{
     const [data,setData] = useState([])
     const userId = useSelector(state=>state.userId)
     const socket = useSelector(state=>state.socket)
+    const [loading,setLoading] = useState(true)
 function handleCancel(){
     setForm(false)
 }
@@ -24,6 +25,7 @@ useEffect(()=>{
         if(data.statusText="OK"){
             console.log(data.data)
             setData(data.data)
+            setLoading(false)
         }
     })
     socket.on('transcation',function(data){
@@ -61,6 +63,7 @@ const columns = [
       title: 'Type',
       key: 'type',
       dataIndex: 'type',
+      render:text=> {return text==='debit' ? <p style={{color:"red"}}>Debit</p>: <p  style={{color:"green"}}>Credit</p> }
      
     },
     {
@@ -76,11 +79,13 @@ const columns = [
   ];
     return (
         <div>
+          <Spin spinning={loading}>
             <HeaderBar></HeaderBar>
             <br></br>
             <Button onClick={()=>setForm(true)} type="primary">Add </Button>
             {form ? <TranscationDetailForm userId={userId} handleCancel={handleCancel} /> : null}
             <Table columns={columns} dataSource={data}></Table>
+            </Spin>
         </div>
     )
 }
