@@ -2,21 +2,15 @@ import React, { useState } from "react";
 import {
   Form,
   Input,
-  Tooltip,
-  Cascader,
+  
   Select,
-  Row,
-  Col,
-  Checkbox,
+  
   Button,
   AutoComplete,
 } from "antd";
-import { QuestionCircleOutlined } from "@ant-design/icons";
-import Axios from "axios";
+
 import auth from "../../API/auth";
 
-const { Option } = Select;
-const AutoCompleteOption = AutoComplete.Option;
 
 const formItemLayout = {
   labelCol: {

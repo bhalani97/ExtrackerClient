@@ -3,13 +3,11 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import SocketApi from '../../API/socketApi';
-const { Header, Content, Footer } = Layout;
+const { Header,  } = Layout;
 
 const HeaderBar = (props)=>{
   const socket = useSelector(state=>state.socket)
   const dispatch = useDispatch()
-  
     function manageNav(){
         props.history.push('/home')
     }

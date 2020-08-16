@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import HeaderBar from '../Header';
 import { Button } from 'antd';
 import TranscationDetailForm from './TranscationDetailForm';
-import { Table, Tag, Space } from 'antd'
+import { Table, Space } from 'antd'
 import { useSelector } from 'react-redux';
 import transcation from '../../API/transcation';
 import moment from 'moment'

@@ -8,17 +8,20 @@ import rootReducer from "./appRedux/store";
 import { Provider } from "react-redux";
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'
+import { composeWithDevTools } from 'redux-devtools-extension';
 const persistConfig = {
   key: 'root',
   storage: storage,
-  whitelist: ['socket'] // which reducer want to store
+   // which reducer want to store
 };
 const pReducer = persistReducer(persistConfig, rootReducer);
-const store = createStore(pReducer);
-const pressist = persistStore(store)
+const store = createStore(pReducer,composeWithDevTools());
+ const persistor = persistStore(store)
 ReactDOM.render(
   <Provider store={store}>
+  
     <App />
+  
   </Provider>,
 
   document.getElementById("root")

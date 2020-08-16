@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import Auth from "../../API/auth";
 
 import Axios from "axios";
 import SocketApi from "../../API/socketApi";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch,  } from "react-redux";
 const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

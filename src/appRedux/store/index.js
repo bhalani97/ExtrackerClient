@@ -1,6 +1,6 @@
 const initialState={
-    userId:"",
-    socket:null
+    socket:null,
+    userId:""
 }
 
 function rootReducer(state=initialState,action){
