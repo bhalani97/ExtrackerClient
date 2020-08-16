@@ -8,6 +8,15 @@ class Transcation {
     console.log(userid)
       return Axios.post(API_URL+"/transcations",{userid})
   }
+  update(transcation){
+    return Axios.put(API_URL + "/transcation",transcation);
+      
+  }
+  delete(id){
+    console.log("sdfs",id)
+      return Axios.delete(API_URL + "/transcation",{data:{id}});
+      
+  }
  
 }
 
