@@ -186,6 +186,7 @@ class TranscationDetailForm extends React.Component {
             <Option value="home">Home</Option>
             <Option value="personal">Personal</Option>
             <Option value="lend">Lend</Option>
+            <Option value="balance">Balance</Option>
             <Option value="other">Other</Option>
           </Select>
           <Space direction="vertical" size={12}>

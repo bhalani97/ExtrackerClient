@@ -68,8 +68,9 @@ const columns = [
   ];
     return (
         <div>
+          <HeaderBar></HeaderBar>
           <Spin spinning={loading}>
-            <HeaderBar></HeaderBar>
+            
             <br></br>
             <Button onClick={()=>setForm(true)} type="primary">Add Account</Button>
             {form ? <AccountDetailForm handleCancel={handleCancel} /> : null}

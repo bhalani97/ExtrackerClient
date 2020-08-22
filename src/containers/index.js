@@ -6,6 +6,7 @@ const MainApp = ()=>{
     return(
         <div>
             <Header></Header>
+            
         </div>
     )
 }

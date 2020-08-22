@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import HeaderBar from "../Header";
-import { Button, Spin } from "antd";
+import {Space , Spin } from "antd";
 import TranscationDetailForm from "./TranscationDetailForm";
-import { Table, Space } from "antd";
+import { Table ,Button } from "antd";
 import { useSelector } from "react-redux";
 import transcation from "../../API/transcation";
 import moment from "moment";
