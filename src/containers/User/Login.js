@@ -1,69 +1,86 @@
-import React, {  useState } from "react";
-import Auth from "../../API/auth";
-
+import React, { useState } from "react";
+import { Form, Input, Button, AutoComplete } from "antd";
 import Axios from "axios";
 import SocketApi from "../../API/socketApi";
-import { useDispatch,  } from "react-redux";
+import { useDispatch } from "react-redux";
+import auth from "../../API/auth";
+import {  UserOutlined,KeyOutlined } from '@ant-design/icons';
+
 const Login = (props) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [msg, setMsg] = useState("");
-
+  const [form] = Form.useForm();
+  const [error, setError] = useState("");
+  const [autoCompleteResult, setAutoCompleteResult] = useState([]);
   const dispatch = useDispatch();
-  function onUserChange(e) {
-    setUsername(e.target.value);
-  }
 
-  function onPassChange(e) {
-    setPassword(e.target.value);
-  }
-  function handleSubmit() {
-    console.log(username + password);
-    Auth.login(username, password)
+  const onFinish = (values) => {
+    auth
+      .login(values)
       .then((data) => {
-        console.log(data);
         if (data.statusText === "OK") {
           localStorage.setItem("token", data.data.token);
-          localStorage.setItem('user',data.data.userid)
+          localStorage.setItem("user", data.data.userid);
           Axios.defaults.headers.common["access-token"] = data.data.token;
-         dispatch({type:'SET',payload:data.data.userid})
-        
-         const socket = SocketApi(data.data.token)
+          dispatch({ type: "SET", payload: data.data.userid });
 
-         dispatch({type:'SET_SOCKET',payload:socket})
-          props.history.push("/main");
+          const socket = SocketApi(data.data.token);
+
+          dispatch({ type: "SET_SOCKET", payload: socket });
+          props.history.push("/home");
         } else {
-          setMsg("Something Went Wrong");
+          setError("Something Went Wrong");
         }
       })
       .catch((error) => {
-        console.log(error)
-        setMsg("Username or Password is invalid");
+        setError("Username or Password Invalid");
       });
-  }
+  };
+
+  const websiteOptions = autoCompleteResult.map((website) => ({
+    label: website,
+    value: website,
+  }));
   return (
-    <div>
-      {msg}
-      <br />
-      UserName:
-      <input
-        type="text"
-        name="username"
-        onChange={onUserChange}
-        value={username}
-      ></input>
-      <br />
-      <br />
-      Password:
-      <input
-        type="password"
-        name="password"
-        onChange={onPassChange}
-        value={password}
-      ></input>
-      <br />
-      <button onClick={handleSubmit}>Login</button>
-      <br />
+    <div >
+      {error ? error : null}
+      <Form form={form} name="login" onFinish={onFinish} scrollToFirstError>
+        <Form.Item
+         name="username"
+          rules={[
+            {
+              required: true,
+              message: "Please input your Username",
+            },
+          ]}
+        >
+          <Input 
+          placeholder="Username"
+          prefix={<UserOutlined className="site-form-item-icon" />}
+          style={{width:"200px"}} />
+        </Form.Item>
+        <Form.Item
+          name="password"
+    
+          rules={[
+            {
+              required: true,
+              message: "Please input your password!",
+            },
+          ]}
+          
+        >
+          <Input.Password 
+          placeholder="Password"
+            prefix={<KeyOutlined className="site-form-item-icon" />}
+            style={{width:"200px"}} 
+          />
+        </Form.Item>
+
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Register
+          </Button>
+        </Form.Item>
+      </Form>
     </div>
   );
 };

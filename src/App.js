@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 import "antd/dist/antd.css";
-import "./bootstrap.css";
 import Register from "./containers/User/Register";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./containers/User/Login";
