@@ -19,7 +19,7 @@ const Home = () => {
         }
             setLoading(false)
        
-    }).catch(error=>alert('Something went wrong'))
+    }).catch(error=>alert('Something went wrong'),setLoading(false))
   }, []);
   return (
     <div>
